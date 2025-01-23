@@ -28,7 +28,7 @@ Install-Module -Name OneDrive-Activity
 ### Prerequisites
 - [Exchange Online Management Module](https://www.powershellgallery.com/packages/ExchangeOnlineManagement)
     - Used to access the Unified Audit Log
-##Usage
+## Usage
 
 ### Parameters
 - **-Url**: The URL of the OneDrive account to audit in the format of https://contoso-my.sharepoint.com/personal/user_contoso_com (Cannot be used with -UnlicensedAccountReportPath).

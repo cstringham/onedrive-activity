@@ -47,7 +47,7 @@ This will save the generated reports in the C:\Reports\{Today's Date}\ folder wi
 ```powershell
 Get-OneDriveActivity -UnlicensedAccountReportPath "C:\Reports\UnlicensedOneDriveAccounts.csv" -OutputFolder "C:\Reports" -DayRange 90 -MaxActivityCount 20
 ```
-This will save the generated reports to the C:\Reports\{Today's Date}\ folder with the following name: {OneDrive Account Name}.csv. Each account will have its own report.
+This will save the generated reports to the C:\Reports\\{Today's Date}\ folder with the following name: {OneDrive Account Name}.csv. Each account will have its own report.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

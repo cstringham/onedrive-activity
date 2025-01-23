@@ -97,7 +97,7 @@ function Get-OneDriveActivity {
                         SourceRelativeUrl   = $AuditData.SourceRelativeUrl
                         ModifiedProperties  = $AuditData.ModifiedProperties | ConvertTo-Json -Depth 100
                         ObjectId            = $AuditData.ObjectId
-                    } | Export-Csv -Path "$OutputFolder\$OutFileName.csv" -Append -NoTypeInformation
+                    } | Export-Csv -Path "$OutputFolder\$OutFileName" -Append -NoTypeInformation
                 }
             }
             else {

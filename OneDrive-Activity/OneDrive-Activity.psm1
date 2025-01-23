@@ -3,6 +3,19 @@
 . $PSScriptRoot\Local\Initialize-UnlicensedAccountList.ps1
 
 function Get-OneDriveActivity {
+    <#
+    .NOTES
+    Created by: Chris Stringham
+
+    .SYNOPSIS
+        This function will get the activity on OneDrive drives using the Unified Audit Log.
+    
+    .DESCRIPTION
+        This function will get the activity on OneDrive drives using the Unified Audit Log.
+    
+    .EXAMPLE
+        Get-OneDriveActivity -Url "https://contoso-my.sharepoint.com/personal/user_contoso_com" -DayRange 30 -MaxActivityCount 10
+    #>
     [CmdletBinding()]
     param (
         [Parameter(ParameterSetName = 'UrlSet', Mandatory = $true)]

@@ -6,5 +6,7 @@ function Initialize-UnlicensedAccounts() {
     )
     $csv = Import-Csv -Path $Path
     $FirstColumn = ($csv[0].PSObject.Properties | Select-Object -First 1).Name
-    return $csv.$FirstColumn
+    $regex = '^https:\/\/[^\/]+-my\.sharepoint\.com\/personal\/[^\/]+$'
+    $Urls = $csv.$FirstColumn | Where-Object {$_ -match $regex}
+    return $Urls
 }

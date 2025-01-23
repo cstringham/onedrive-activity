@@ -1,6 +1,6 @@
 #Requires -Module ExchangeOnlineManagement
 
-. $PSScriptRoot\Local\Initialize-UnlicensedAccounts.ps1
+. $PSScriptRoot\Local\Initialize-UnlicensedAccountList.ps1
 
 function Get-OneDriveActivity {
     [CmdletBinding()]
@@ -64,7 +64,7 @@ function Get-OneDriveActivity {
             $Urls = @($Url)
         }
         elseif ($UnlicensedAccountReportPath) {
-            $Urls = @(Initialize-UnlicensedAccounts -Path $UnlicensedAccountReportPath)
+            $Urls = @(Initialize-UnlicensedAccountList -Path $UnlicensedAccountReportPath)
             if (-not $Urls) {
                 Write-Error "No valid OneDrive Urls found in the report."
                 exit

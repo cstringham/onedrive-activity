@@ -40,25 +40,28 @@ Install-Module -Name OneDrive-Activity
 - **-DayRange**: The number of days to look back for activities. Default is 30 days.
 - **-MaxActivityCount**: The maximum number of activities to retrieve per OneDrive Account. Default is 10.
 - **-IncludeRawResults**: Include the raw Unified Audit Log searh results as an additional output CSV file.
+- **-ExcludeSystemAndDeletedAccounts**: Exclude activities performed by system accounts and deleted accounts from the report.
 
 ### Examples
 **Example 1: Audit a single OneDrive account**
 ```powershell
 Get-OneDriveActivity -Url "https://contoso-my.sharepoint.com/personal/user_contoso_com" -OutputFolder "C:\Reports" -DayRange 90 -MaxActivityCount 20
 ```
-This will save the generated reports in the C:\Reports\{Today's Date}\ folder with the following name: user_contoso_com.csv
 
 **Example 2: Audit unlicensed OneDrive accounts**
 ```powershell
 Get-OneDriveActivity -UnlicensedAccountReportPath "C:\Reports\UnlicensedOneDriveAccounts.csv" -OutputFolder "C:\Reports" -DayRange 90 -MaxActivityCount 20
 ```
-This will save the generated reports to the C:\Reports\\{Today's Date}\ folder with the following name: {OneDrive Account Name}.csv. Each account will have its own report.
 
 **Example 3: Include raw results in the report**
 ```powershell
 Get-OneDriveActivity -Url "https://contoso-my.sharepoint.com/personal/user_contoso_com" -OutputFolder "C:\Reports" -DayRange 90 -MaxActivityCount 20 -IncludeRawResults
 ```
-This will save the generated reports in the C:\Reports\{Today's Date}\ folder with the following name: user_contoso_com.csv and user_contoso_com-RawResults.csv.
+
+**Example 4: Exclude system and deleted accounts from the report**
+```powershell
+Get-OneDriveActivity -Url "https://contoso-my.sharepoint.com/personal/user_contoso_com" -OutputFolder "C:\Reports" -DayRange 90 -MaxActivityCount 20 -ExcludeSystemAndDeletedAccounts
+```
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

@@ -22,11 +22,21 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
-## [0.1.0] - 2025-01-22
+## [0.1.0] - 2025-01-24
 
 ### Added
 - Added `-IncludeRawResults` parameter to include raw Unified Audit Log search results in the output.
 - Added timestamps for activity records.
+- Added additional console outputs for increased clarity during execution.
+
+### Changed
+
+### Fixed
+
+## [0.1.1] - 2025-01-24
+
+### Added
+- Added `-ExcludeSystemAndDeletedAccounts` parameter to exclude activities performed by system accounts and deleted accounts.
 - Added additional console outputs for increased clarity during execution.
 
 ### Changed

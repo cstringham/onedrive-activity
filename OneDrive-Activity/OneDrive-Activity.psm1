@@ -50,7 +50,8 @@ function Get-OneDriveActivity {
         [string] $OutputFolder = ".\OneDriveActivityReports",
         [int] $DayRange = 30,
         [int] $MaxActivityCount = 10,
-        [switch] $IncludeRawResults
+        [switch] $IncludeRawResults,
+        [switch] $ExcludeSystemAndDeletedAccounts
     )
 
     begin {
@@ -85,14 +86,23 @@ function Get-OneDriveActivity {
             }
         }
 
+        if($ExcludeSystemAndDeletedAccounts) {
+            $Users = Get-User -ResultSize Unlimited | Select-Object UserPrincipalName
+        }
+
         $total = $Urls.Count
         $count = 0
 
         foreach ($Url in $Urls) {
             Write-Progress -Activity "Processing OneDrive Urls" -Status "Processing $Url" -PercentComplete (($count / $total) * 100)
             $OutFileName = "$(($Url -split "/")[-1]).csv"
-            $Results = Search-UnifiedAuditLog -ObjectIds "$Url*" -StartDate (Get-Date).AddDays( - ($DayRange)) -EndDate (Get-Date) -ResultSize $MaxActivityCount
+            if($ExcludeSystemAndDeletedAccounts) {
+                $Results = Search-UnifiedAuditLog -ObjectIds "$Url*" -UserIds $Users.UserPrincipalName -StartDate (Get-Date).AddDays( - ($DayRange)) -EndDate (Get-Date) -ResultSize $MaxActivityCount
+            } else {
+                $Results = Search-UnifiedAuditLog -ObjectIds "$Url*" -StartDate (Get-Date).AddDays( - ($DayRange)) -EndDate (Get-Date) -ResultSize $MaxActivityCount
+            }
             if ($Results) {
+                Write-Host "Found $($Results.Count) activities for $Url in the past $DayRange days." -ForegroundColor Cyan
                 foreach ($Result in $Results) {
                     $AuditData = ConvertFrom-Json $Result.AuditData
                     [PSCustomObject]@{

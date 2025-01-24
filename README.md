@@ -1,8 +1,8 @@
 <p align="center">
     <a href="https://www.powershellgallery.com/packages/OneDrive-Activity"><img src="https://img.shields.io/powershellgallery/v/OneDrive-Activity"></a>
-    <img src="https://img.shields.io/powershellgallery/dt/OneDrive-Activity">
+    <a href="https://www.powershellgallery.com/packages/OneDrive-Activity"><img src="https://img.shields.io/powershellgallery/dt/OneDrive-Activity"></a>
     <br>
-    <img src="https://img.shields.io/github/license/cstringham/onedrive-activity">    
+    <a href="https://github.com/cstringham/onedrive-activity/blob/main/LICENSE"><img src="https://img.shields.io/github/license/cstringham/onedrive-activity"></a>    
 </p>
 
 # OneDrive Activity

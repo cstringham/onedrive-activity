@@ -1,8 +1,8 @@
 <p align="center">
     <a href="https://www.powershellgallery.com/packages/OneDrive-Activity"><img src="https://img.shields.io/powershellgallery/v/OneDrive-Activity"></a>
-    <img src="https://img.shields.io/github/license/cstringham/onedrive-activity">
-    <br>
     <img src="https://img.shields.io/powershellgallery/dt/OneDrive-Activity">
+    <br>
+    <img src="https://img.shields.io/github/license/cstringham/onedrive-activity">    
 </p>
 
 # OneDrive Activity

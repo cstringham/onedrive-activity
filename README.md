@@ -1,11 +1,10 @@
 <p align="center">
     <a href="https://www.powershellgallery.com/packages/OneDrive-Activity"><img src="https://img.shields.io/powershellgallery/v/OneDrive-Activity"></a>
-    <img src="https://img.shields.io/github/license/cstringham/onedrive-activity
-    ">
+    <img src="https://img.shields.io/github/license/cstringham/onedrive-activity">
     <br>
-    <img src="https://img.shields.io/powershellgallery/dt/OneDrive-Activity
-    ">
+    <img src="https://img.shields.io/powershellgallery/dt/OneDrive-Activity">
 </p>
+
 # OneDrive Activity
 This module aims to simplify the process of auditing and documenting the activity of a OneDrive account. It provides a function that allows the user to generate a report of activities from the Unified Audit Log of a OneDrive account. The report is saved in a CSV file and contains the following information:
 - ActivityDateTime

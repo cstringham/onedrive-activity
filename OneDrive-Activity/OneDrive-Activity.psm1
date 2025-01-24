@@ -49,7 +49,8 @@ function Get-OneDriveActivity {
             })]
         [string] $OutputFolder = ".\OneDriveActivityReports",
         [int] $DayRange = 30,
-        [int] $MaxActivityCount = 10
+        [int] $MaxActivityCount = 10,
+        [switch] $IncludeRawResults
     )
 
     begin {
@@ -95,29 +96,35 @@ function Get-OneDriveActivity {
                 foreach ($Result in $Results) {
                     $AuditData = ConvertFrom-Json $Result.AuditData
                     [PSCustomObject]@{
-                        RecordType          = $Result.RecordType
-                        Operation           = $AuditData.Operation
-                        Workload            = $AuditData.Workload
-                        UserId              = $Result.UserIds
-                        ClientIP            = $AuditData.ClientIP
-                        BrowserName         = $AuditData.BrowserName
-                        BrowserVersion      = $AuditData.BrowserVersion
-                        IsManagedDevice     = $AuditData.IsManagedDevice
-                        DeviceDisplayName   = $AuditData.DeviceDisplayName
-                        SiteUrl             = $AuditData.SiteUrl
-                        SourceFileExtension = $AuditData.SourceFileExtension
-                        SourceFileName      = $AuditData.SourceFileName
-                        SourceRelativeUrl   = $AuditData.SourceRelativeUrl
-                        ModifiedProperties  = $AuditData.ModifiedProperties | ConvertTo-Json -Depth 100
-                        ObjectId            = $AuditData.ObjectId
+                        ActivityDateTime        = (Get-Date $AuditData.CreationTime).ToString("yyyy-MM-dd HH:mm:ss")
+                        "ActivityDateTime(UTC)" = (Get-Date $AuditData.CreationTime).ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss")
+                        RecordType              = $Result.RecordType
+                        Operation               = $AuditData.Operation
+                        Workload                = $AuditData.Workload
+                        UserId                  = $Result.UserIds
+                        ClientIP                = $AuditData.ClientIP
+                        BrowserName             = $AuditData.BrowserName
+                        BrowserVersion          = $AuditData.BrowserVersion
+                        IsManagedDevice         = $AuditData.IsManagedDevice
+                        DeviceDisplayName       = $AuditData.DeviceDisplayName
+                        SiteUrl                 = $AuditData.SiteUrl
+                        SourceFileExtension     = $AuditData.SourceFileExtension
+                        SourceFileName          = $AuditData.SourceFileName
+                        SourceRelativeUrl       = $AuditData.SourceRelativeUrl
+                        ModifiedProperties      = $AuditData.ModifiedProperties | ConvertTo-Json -Depth 100
+                        ObjectId                = $AuditData.ObjectId
                     } | Export-Csv -Path "$OutputFolder\$OutFileName" -Append -NoTypeInformation
+                    if ($IncludeRawResults) {
+                        $Result | Export-Csv -Path "$OutputFolder\$OutFileName-RawResults.csv" -Append -NoTypeInformation
+                    }
                 }
             }
             else {
-                Write-Warning "No activity found for $Url"
+                Write-Warning "No activity found for $Url in the past $DayRange days."
             }
             $count++
         }
+        Write-Host "Reports saved to $OutputFolder" -ForegroundColor Green
         Write-Progress -Activity "Processing OneDrive Urls" -Status "Processing $count of $total" -PercentComplete 100
     }
 

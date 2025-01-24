@@ -1,5 +1,7 @@
 # OneDrive Activity
-This module aims to simplify the process of auditing and documenting the activity of a OneDrive account. It provides a function that allow the user to generate a report of activities from the Unified Audit Log of a OneDrive account. The report is saved in a CSV file and contains the following information:
+This module aims to simplify the process of auditing and documenting the activity of a OneDrive account. It provides a function that allows the user to generate a report of activities from the Unified Audit Log of a OneDrive account. The report is saved in a CSV file and contains the following information:
+- ActivityDateTime
+- ActivityDateTime(UTC)
 - RecordType
 - Operation
 - Workload
@@ -8,6 +10,7 @@ This module aims to simplify the process of auditing and documenting the activit
 - BrowserName
 - BrowserVersion
 - IsManagedDevice
+- DeviceDisplayName
 - SiteUrl
 - SourceFileExtension
 - SourceFileName
@@ -15,7 +18,7 @@ This module aims to simplify the process of auditing and documenting the activit
 - ModifiedProperties
 - ObjectId
 
-Additionally, the module provides the ability to audit activity on unlicensed OneDrive accounts by supplying the unlicensed OneDrive account report csv. To generate this report, navigate to your organization's SharePoint Admin Center > Reports > OneDrive accounts and click the "Download report" button.
+Additionally, the module provides the ability to audit activity on unlicensed OneDrive accounts by supplying the unlicensed OneDrive account report CSV. To generate this report, navigate to your organization's SharePoint Admin Center > Reports > OneDrive accounts and click the "Download report" button.
 
 ![Unlicensed OneDrive Accounts Report](images/Unlicensed%20OneDrive%20Accounts.png)
 
@@ -36,6 +39,8 @@ Install-Module -Name OneDrive-Activity
 - **-OutputFolder**: The path to the folder where the report(s) will be saved. If not specified, the report will be saved to ./OneDriveActivityReports.
 - **-DayRange**: The number of days to look back for activities. Default is 30 days.
 - **-MaxActivityCount**: The maximum number of activities to retrieve per OneDrive Account. Default is 10.
+- **-IncludeRawResults**: Include the raw Unified Audit Log searh results as an additional output CSV file.
+
 ### Examples
 **Example 1: Audit a single OneDrive account**
 ```powershell
@@ -49,6 +54,11 @@ Get-OneDriveActivity -UnlicensedAccountReportPath "C:\Reports\UnlicensedOneDrive
 ```
 This will save the generated reports to the C:\Reports\\{Today's Date}\ folder with the following name: {OneDrive Account Name}.csv. Each account will have its own report.
 
+**Example 3: Include raw results in the report**
+```powershell
+Get-OneDriveActivity -Url "https://contoso-my.sharepoint.com/personal/user_contoso_com" -OutputFolder "C:\Reports" -DayRange 90 -MaxActivityCount 20 -IncludeRawResults
+```
+This will save the generated reports in the C:\Reports\{Today's Date}\ folder with the following name: user_contoso_com.csv and user_contoso_com-RawResults.csv.
+
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-

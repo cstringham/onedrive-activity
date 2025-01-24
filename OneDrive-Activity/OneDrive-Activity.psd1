@@ -12,7 +12,7 @@
 RootModule = 'OneDrive-Activity.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.0.1'
+ModuleVersion = '0.1.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -24,7 +24,7 @@ GUID = '6279c3df-3e9d-4699-9857-4e9807aa8d61'
 Author = 'Chris Stringham'
 
 # Company or vendor of this module
-#CompanyName = 'Unknown'
+CompanyName = 'Summit Technology, LLC'
 
 # Copyright statement for this module
 Copyright = '(c) Chris Stringham. All rights reserved.'
@@ -101,7 +101,7 @@ PrivateData = @{
         # LicenseUri = ''
 
         # A URL to the main website for this project.
-        ProjectUri = 'https://github.com/cstringham/unlicensed-onedrive-activity'
+        ProjectUri = 'https://github.com/cstringham/onedrive-activity'
 
         # A URL to an icon representing this module.
         # IconUri = ''
